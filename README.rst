@@ -34,15 +34,13 @@ OCI WAF エッジポリシーで Web アプリケーションを保護する
 
 実作業 - ローカル -
 =====================================================================
-
-1. OCI 環境デプロイ
----------------------------------------------------------------------
-* `詳細 <./envs/oci>`_
-
-2. AWS 環境デプロイ
+1. AWS 環境デプロイ
 ---------------------------------------------------------------------
 * `詳細 <./envs/aws>`_
 
+2. OCI 環境デプロイ
+---------------------------------------------------------------------
+* `詳細 <./envs/oci>`_
 
 後片付け - ローカル -
 =====================================================================
@@ -78,3 +76,4 @@ AWS 環境削除
 * `Terraform v1.9 では null_resource を安全に terraform_data に置き換えることができる -Zenn <https://zenn.dev/terraform_jp/articles/tf-null-resource-to-terraform-data>`_
 * `Terraform cloudinit Provider を使って MIME multi-part 形式の cloud-init 設定を管理する - HatenaBlog <https://chaya2z.hatenablog.jp/entry/2025/10/15/040000>`_
 * `【Terraform🧑🏻‍🚀】tfstateファイルの分割パターンとディレクトリ構成への適用 <https://hiroki-hasegawa.hatenablog.jp/entry/2023/07/05/001756>`_
+* `Terraformで自己署名証明書の作成からALBの適用までを一発で実施する - DevelopersIO <https://dev.classmethod.jp/articles/terraform-self-signed-certificate-alb-setup/>`_

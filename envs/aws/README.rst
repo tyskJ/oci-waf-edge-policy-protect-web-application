@@ -24,7 +24,7 @@
 ---------------------------------------------------------------------
 .. code-block:: bash
 
-  aws s3 mb s3://tf-20260101 --profile admin
+  aws s3 mb s3://terraform-working --profile admin
 
 .. note::
 
@@ -42,11 +42,15 @@
 .. code-block:: bash
 
   cat <<EOF > config.aws.tfbackend
-  bucket = "上記で作成したバケット名"
+  bucket = "terraform-working"
   key = "oci-waf-edge-policy-protect-web-application/terraform.tfstate"
   region = "ap-northeast-1"
   profile = "admin"
   EOF
+
+.. note::
+
+  * *事前作業(2)* で作成したバケット名に合わせること
 
 2. 変数ファイル作成
 ---------------------------------------------------------------------
@@ -91,8 +95,8 @@
 ---------------------------------------------------------------------
 .. code-block:: bash
 
-  aws s3 rm s3://tf-20260101 --recursive --profile admin
-  aws s3 rb s3://tf-20260101 --profile admin
+  aws s3 rm s3://terraform-working --recursive --profile admin
+  aws s3 rb s3://terraform-working --profile admin
 
 .. note::
 

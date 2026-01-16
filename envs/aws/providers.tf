@@ -12,8 +12,9 @@ provider "aws" {
   region  = "ap-northeast-1"
   default_tags {
     tags = {
-      Env    = "prd"
-      System = "oci-waf-edge-policy-protect-web-application"
+      Env                = "prd"
+      System             = "oci-waf-edge-policy-protect-web-application"
+      ManagedByTerraform = "true"
     }
   }
 }

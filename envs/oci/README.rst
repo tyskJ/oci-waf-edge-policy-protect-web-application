@@ -48,7 +48,7 @@
   cat <<EOF > config.oci.tfbackend
   bucket = "terraform-working"
   namespace = "テナンシに一意に付与されたネームスペース"
-  key = "oci-block-volume-attachmenttype-organize/terraform.tfstate"
+  key = "oci-waf-edge-policy-protect-web-application/terraform.tfstate"
   auth = "SecurityToken"
   config_file_profile = "ADMIN"
   region = "ap-tokyo-1"
@@ -65,7 +65,6 @@
 
   cat <<EOF > oci.auto.tfvars
   tenancy_ocid = "テナンシOCID(=ルートコンパートメントOCID)"
-  source_ip = "接続元IPアドレス(CIDR形式)"
   EOF
 
 

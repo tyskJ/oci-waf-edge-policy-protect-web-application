@@ -12,6 +12,13 @@
 
   aws login --profile admin
 
+.. code-block:: bash
+
+  sed -i '' '/^\[profile admin\]/a\
+  credential_process = aws configure export-credentials --profile admin
+  ' ~/.aws/config
+
+
 事前作業(1)
 =====================================================================
 1. 各種モジュールインストール

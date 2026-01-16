@@ -65,6 +65,7 @@
 
   cat <<EOF > oci.auto.tfvars
   tenancy_ocid = "テナンシOCID(=ルートコンパートメントOCID)"
+  domain_name = "ドメイン名"
   EOF
 
 

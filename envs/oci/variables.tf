@@ -2,6 +2,6 @@ variable "tenancy_ocid" {
   type = string
 }
 
-variable "zone_name" {
+variable "domain_name" {
   type = string
 }

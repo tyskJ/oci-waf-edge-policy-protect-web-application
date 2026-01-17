@@ -30,7 +30,7 @@ resource "tls_private_key" "server" {
 
 resource "tls_cert_request" "server" {
   private_key_pem = tls_private_key.server.private_key_pem
-  dns_names = [ "origin.${var.domain_name}" ] # SAN
+  dns_names       = ["origin.${var.domain_name}"] # SAN
   subject {
     common_name  = "origin.${var.domain_name}"
     organization = "${var.domain_name} Org"

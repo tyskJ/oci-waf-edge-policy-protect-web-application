@@ -69,6 +69,11 @@ cat <<'EOF' > /etc/httpd/conf.d/ssl.conf
 ${ssl_conf}
 EOF
 
+# 443 Listen を明示的に追加（存在しない場合のみ）
+if ! grep -q "^Listen 443" /etc/httpd/conf/httpd.conf; then
+  sed -i '/^Listen 80$/a Listen 443 https' /etc/httpd/conf/httpd.conf
+fi
+
 # Apache Start
 systemctl enable --now httpd
 --//--

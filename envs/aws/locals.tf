@@ -17,7 +17,7 @@ locals {
 Apache SSL Settings File
 ************************************************************/
 resource "local_file" "apache_ssl_conf" {
-  filename = "${path.module}/../.settings/apache-ssl.conf"
+  filename = "${path.module}/.settings/apache-ssl.conf"
   content  = <<EOF
 <VirtualHost *:443>
     ServerName origin.${var.domain_name}

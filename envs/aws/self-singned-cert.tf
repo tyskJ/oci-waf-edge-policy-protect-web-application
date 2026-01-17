@@ -9,8 +9,8 @@ resource "tls_private_key" "ca" {
 resource "tls_self_signed_cert" "ca" {
   private_key_pem = tls_private_key.ca.private_key_pem
   subject {
-    common_name  = "Root CA"
-    organization = "${var.domain_name} Org"
+    common_name  = "Origin Root CA"
+    organization = "Origin ${var.domain_name} Org"
   }
   validity_period_hours = 87600 # 10年
   is_ca_certificate     = true
@@ -33,7 +33,7 @@ resource "tls_cert_request" "server" {
   dns_names       = ["origin.${var.domain_name}"] # SAN
   subject {
     common_name  = "origin.${var.domain_name}"
-    organization = "${var.domain_name} Org"
+    organization = "Origin ${var.domain_name} Org"
   }
 }
 
@@ -61,19 +61,19 @@ resource "tls_locally_signed_cert" "server" {
 PEM出力（CA / Server）
 ************************************************************/
 resource "local_file" "ca_cert_pem" {
-  filename        = "${path.module}/../.key/ca_crt.pem"
+  filename        = "${path.module}/.key/origin_ca_crt.pem"
   content         = tls_self_signed_cert.ca.cert_pem
   file_permission = "0644"
 }
 
 resource "local_file" "server_cert_pem" {
-  filename        = "${path.module}/../.key/server_crt.pem"
+  filename        = "${path.module}/.key/origin_server_crt.pem"
   content         = tls_locally_signed_cert.server.cert_pem
   file_permission = "0644"
 }
 
 resource "local_file" "server_key_pem" {
-  filename        = "${path.module}/../.key/server_key.pem"
+  filename        = "${path.module}/.key/origin_server_key.pem"
   content         = tls_private_key.server.private_key_pem
   file_permission = "0600"
 }

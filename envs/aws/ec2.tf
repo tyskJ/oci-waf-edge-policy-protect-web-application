@@ -7,7 +7,7 @@ resource "tls_private_key" "ssh_keygen" {
 }
 
 resource "local_sensitive_file" "keypair_pem" {
-  filename        = "${path.module}/../.key/keypair.pem"
+  filename        = "${path.module}/.key/keypair.pem"
   content         = tls_private_key.ssh_keygen.private_key_pem
   file_permission = "0600"
 }

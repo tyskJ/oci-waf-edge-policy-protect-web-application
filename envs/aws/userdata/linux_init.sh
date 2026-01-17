@@ -31,11 +31,10 @@ dnf update -y
 
 # Timezone
 timedatectl set-timezone Asia/Tokyo
-systemctl restart rsyslog
 
 # Locale
 localectl set-locale LANG=ja_JP.UTF-8
-localectl set-keymap jp106
+localectl set-keymap jp-OADG109A
 
 # Apach Install
 dnf install -y httpd

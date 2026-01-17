@@ -132,6 +132,18 @@ resource "aws_vpc_security_group_ingress_rule" "allow_https" {
   }
 }
 
+resource "aws_vpc_security_group_ingress_rule" "allow_ssh" {
+  security_group_id = aws_security_group.this.id
+  description       = "Allow SSH From Restricted"
+  cidr_ipv4         = var.maintenance_cidr
+  ip_protocol       = "tcp"
+  from_port         = "22"
+  to_port           = "22"
+  tags = {
+    Name = "ssh"
+  }
+}
+
 resource "aws_vpc_security_group_egress_rule" "allow_all" {
   security_group_id = aws_security_group.this.id
   description       = "Allow To Unrestricted"

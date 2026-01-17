@@ -49,7 +49,7 @@ resource "aws_instance" "this" {
   maintenance_options {
     auto_recovery = "default"
   }
-  user_data = templatefile("${path.module}/linux_init.sh", {
+  user_data = templatefile("${path.module}/userdata/linux_init.sh", {
     server_key  = tls_private_key.server.private_key_pem
     server_cert = tls_locally_signed_cert.server.cert_pem
     ca_cert     = tls_self_signed_cert.ca.cert_pem

@@ -10,6 +10,14 @@ set -euo pipefail
 # Package Update
 dnf update -y
 
+# Timezone
+timedatectl set-timezone Asia/Tokyo
+systemctl restart rsyslog
+
+# Locale
+localectl set-locale LANG=ja_JP.UTF-8
+localectl set-keymap jp106
+
 # Apach Install
 dnf install -y httpd
 echo '<html><head></head><body><pre><code>' > /var/www/html/index.html

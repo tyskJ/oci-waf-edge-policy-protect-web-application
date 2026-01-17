@@ -68,7 +68,7 @@
 
 .. code-block:: bash
 
-  cat <<EOF > oci.auto.tfvars
+  cat <<EOF > aws.auto.tfvars
   maintenance_cidr = "SSH接続接続元CIDR"
   domain_name = "ドメイン名"
   EOF

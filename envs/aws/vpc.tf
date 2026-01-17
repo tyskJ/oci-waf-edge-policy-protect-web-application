@@ -108,17 +108,17 @@ resource "aws_security_group" "this" {
   }
 }
 
-resource "aws_vpc_security_group_ingress_rule" "allow_http" {
-  security_group_id = aws_security_group.this.id
-  description       = "Allow HTTP From Unrestricted"
-  cidr_ipv4         = "0.0.0.0/0"
-  ip_protocol       = "tcp"
-  from_port         = "80"
-  to_port           = "80"
-  tags = {
-    Name = "http"
-  }
-}
+# resource "aws_vpc_security_group_ingress_rule" "allow_http" {
+#   security_group_id = aws_security_group.this.id
+#   description       = "Allow HTTP From Unrestricted"
+#   cidr_ipv4         = "0.0.0.0/0"
+#   ip_protocol       = "tcp"
+#   from_port         = "80"
+#   to_port           = "80"
+#   tags = {
+#     Name = "http"
+#   }
+# }
 
 resource "aws_vpc_security_group_ingress_rule" "allow_https" {
   security_group_id = aws_security_group.this.id

@@ -71,6 +71,7 @@
   cat <<EOF > aws.auto.tfvars
   maintenance_cidr = "SSH接続接続元CIDR"
   domain_name = "ドメイン名"
+  public_hostedzone_id = "Route 53パブリックホストゾーンID"
   EOF
 
 3. *Terraform* 初期化

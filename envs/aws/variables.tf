@@ -5,3 +5,7 @@ variable "maintenance_cidr" {
 variable "domain_name" {
   type = string
 }
+
+variable "public_hostedzone_id" {
+  type = string
+}

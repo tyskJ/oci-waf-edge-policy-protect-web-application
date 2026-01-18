@@ -151,3 +151,12 @@ resource "oci_waas_waas_policy" "edge_policy" {
     }
   }
 }
+
+/************************************************************
+Protection Rule (Oracle Managed)
+************************************************************/
+resource "oci_waas_protection_rule" "key_1000000" {
+  waas_policy_id = oci_waas_waas_policy.edge_policy.id
+  key            = "1000000"
+  action         = "BLOCK"
+}

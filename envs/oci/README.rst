@@ -87,6 +87,48 @@
 
   terraform apply --auto-approve
 
+6. Edge Policy CNAME 登録
+---------------------------------------------------------------------
+
+.. note::
+  
+  デプロイすると、output に Edge Policy の CNAME の値が出力されるので Route 53 に登録します
+
+
+* レコード登録用の json ファイルを作成 ( *oci* フォルダ配下に作成すること )
+
+.. code-block:: bash
+
+  cat <<EOF> recordset_create.json
+  {
+    "Comment": "CREATE Edge Policy CNAME record",
+    "Changes": [
+      {
+        "Action": "CREATE",
+        "ResourceRecordSet": {
+          "Name": "Edge Policy 作成時に Primary domain に指定した FQDN",
+          "Type": "CNAME",
+          "TTL": 10,
+          "ResourceRecords": [
+            {
+              "Value": "Edge Policy 作成時に出力された CNAME の値"
+            }
+          ]
+        }
+      }
+    ]
+  }
+  EOF
+
+* Route 53 に登録
+
+.. code-block::
+
+  aws route53 change-resource-record-sets \
+  --hosted-zone-id 対象Route53のパブリックホストゾーンID \
+  --change-batch file://recordset_create.json \
+  --profile admin
+
 後片付け - ローカル -
 =====================================================================
 1. 環境削除
@@ -103,6 +145,44 @@
   --bucket-name terraform-working \
   --force --empty \
   --profile ADMIN --auth security_token
+
+3. Edge Policy CNAME 削除
+---------------------------------------------------------------------
+
+* レコード削除用の json ファイルを作成 ( *oci* フォルダ配下に作成すること )
+
+.. code-block:: bash
+
+  cat <<EOF> recordset_delete.json
+  {
+    "Comment": "DELETE Edge Policy CNAME record",
+    "Changes": [
+      {
+        "Action": "DELETE",
+        "ResourceRecordSet": {
+          "Name": "Edge Policy 作成時に Primary domain に指定した FQDN",
+          "Type": "CNAME",
+          "TTL": 10,
+          "ResourceRecords": [
+            {
+              "Value": "Edge Policy 作成時に出力された CNAME の値"
+            }
+          ]
+        }
+      }
+    ]
+  }
+  EOF
+
+* Route 53 から削除
+
+.. code-block::
+
+  aws route53 change-resource-record-sets \
+  --hosted-zone-id 対象Route53のパブリックホストゾーンID \
+  --change-batch file://recordset_delete.json \
+  --profile admin
+
 
 
 番外編

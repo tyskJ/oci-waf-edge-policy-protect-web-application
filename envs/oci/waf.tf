@@ -28,7 +28,7 @@ resource "oci_waas_waas_policy" "edge_policy" {
   policy_config {
     is_https_enabled              = true
     certificate_id                = oci_waas_certificate.this.id
-    is_https_forced               = false
+    is_https_forced               = true
     tls_protocols                 = ["TLS_V1_2", "TLS_V1_3"]
     is_sni_enabled                = false
     is_response_buffering_enabled = false
